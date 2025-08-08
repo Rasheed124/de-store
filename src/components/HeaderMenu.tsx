@@ -8,8 +8,6 @@ import React from "react";
 const HeaderMenu = () => {
   const pathname = usePathname();
 
-  console.log(pathname);
-
   return (
     <div className="hidden lg:inline-flex items-center gap-5 text-lg capitalize font-semibold w-1/3  ">
       {headerData.map((item) => (
