@@ -33,7 +33,7 @@ const Header = async () => {
           <SignedIn>
             <Link href={"/orders"} className="relative group cursor-pointer">
               <ListOrdered className="w-6 h-6 text-gray-700 transition-colors group-hover:text-black" />
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full transition-transform group-hover:scale-110">
+              <span className="absolute -top-2 -right-2 bg-black text-white text-xs font-semibold px-1.5 py-0.5 rounded-full transition-transform group-hover:scale-110">
                 2
               </span>
             </Link>

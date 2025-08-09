@@ -13,7 +13,7 @@ const HeaderMenu = () => {
       {headerData.map((item) => (
         <Link
           className={`hover:text-black font-bold group relative hoverEffect ${
-            pathname === item?.href && "text-red-900"
+            pathname === item?.href && "text-black/50"
           }`}
           key={item?.title}
           href={item?.href}
