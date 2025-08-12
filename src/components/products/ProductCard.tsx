@@ -1,9 +1,9 @@
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import React from "react";
-// import PriceView from "./PriceView";
 import Link from "next/link";
 import { Product } from "../../../sanity.types";
+import ProductPriceView from "./ProductPriceView";
 // import AddToCartButton from "./AddToCartButton";
 // import Title from "./Title";
 
@@ -30,11 +30,11 @@ const ProductCard = ({ product }: { product: Product }) => {
       <div className="py-3 px-2 flex flex-col gap-1.5 bg-zinc-50 border border-t-0 rounded-md rounded-tl-none rounded-tr-none">
         {/* <Title className="text-base line-clamp-1">{product?.name}</Title> */}
         <p>{product?.intro}</p>
-        {/* <PriceView
+        <ProductPriceView
           price={product?.price}
           discount={product?.discount}
           className="text-lg"
-        /> */}
+        />
         {/* <AddToCartButton product={product} /> */}
       </div>
     </div>
