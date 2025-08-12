@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Product } from "../../../sanity.types";
 import ProductPriceView from "./ProductPriceView";
+import AddToCartButton from "./AddToCartButton";
 // import AddToCartButton from "./AddToCartButton";
 // import Title from "./Title";
 
@@ -26,6 +27,14 @@ const ProductCard = ({ product }: { product: Product }) => {
             />
           </Link>
         )}
+
+        {product?.stock === 0 && (
+          <div className="absolute top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center">
+            <p className="text-base text-white font-semibold text-center">
+              Out of Stock
+            </p>
+          </div>
+        )}
       </div>
       <div className="py-3 px-2 flex flex-col gap-1.5 bg-zinc-50 border border-t-0 rounded-md rounded-tl-none rounded-tr-none">
         {/* <Title className="text-base line-clamp-1">{product?.name}</Title> */}
@@ -35,7 +44,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           discount={product?.discount}
           className="text-lg"
         />
-        {/* <AddToCartButton product={product} /> */}
+        <AddToCartButton product={product} />
       </div>
     </div>
   );
