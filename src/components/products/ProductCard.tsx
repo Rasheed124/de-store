@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Product } from "../../../sanity.types";
 import ProductPriceView from "./ProductPriceView";
 import AddToCartButton from "./AddToCartButton";
-// import AddToCartButton from "./AddToCartButton";
 // import Title from "./Title";
 
 const ProductCard = ({ product }: { product: Product }) => {
@@ -37,7 +36,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         )}
       </div>
       <div className="py-3 px-2 flex flex-col gap-1.5 bg-zinc-50 border border-t-0 rounded-md rounded-tl-none rounded-tr-none">
-        {/* <Title className="text-base line-clamp-1">{product?.name}</Title> */}
+        <h2 className="text-base line-clamp-1">{product?.name}</h2>
         <p>{product?.intro}</p>
         <ProductPriceView
           price={product?.price}

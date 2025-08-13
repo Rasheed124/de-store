@@ -9,7 +9,7 @@ import Link from "next/link";
 import React, { FC } from "react";
 
 interface SocialMediaIcon {
-  clasName?: string;
+  className?: string;
   iconClassName?: string;
   tooltipClassName?: string;
 }
@@ -58,13 +58,13 @@ const socialIcons = [
 ];
 
 const SocialMedia: FC<SocialMediaIcon> = ({
-  clasName,
+  className,
   iconClassName,
   tooltipClassName,
 }) => {
   return (
     <TooltipProvider>
-      <div className={cn("flex items-center gap-3.5", clasName)}>
+      <div className={cn("flex items-center gap-3.5", className)}>
         {socialIcons.map((item) => (
           <Tooltip key={item?.title}>
             <TooltipTrigger asChild>

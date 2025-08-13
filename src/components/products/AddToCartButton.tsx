@@ -1,9 +1,13 @@
-import React from "react";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
-import { Product } from "../../../sanity.types";
+"use client";
+import React, { useEffect, useState } from "react";
+// import toast from "react-hot-toast";
 import PriceFormatter from "./PriceFormatter";
+// import { Button } from "./ui/button";
+// import useCartStore from "@/store";
 import QuantityButtons from "./QuantityButtons";
+import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import { Product } from "../../../sanity.types";
 
 interface Props {
   product: Product;
@@ -11,10 +15,22 @@ interface Props {
 }
 
 const AddToCartButton = ({ product, className }: Props) => {
+  // const { addItem, getItemCount } = useCartStore();
+  const [isClient, setIsClient] = useState(false);
+
+  const itemCount = 0;
   const isOutOfStock = product?.stock === 0;
 
-  const itemCount = 3;
+  // Use useEffect to set isClient to true after component mounts
+  // This ensures that the component only renders on the client-side
+  // Preventing hydration errors due to server/client mismatch
 
+  // useEffect(() => {
+  //   setIsClient(true);
+  // }, []);
+  // if (!isClient) {
+  //   return null;
+  // }
   return (
     <div className="w-full h-12 flex items-center">
       {itemCount ? (
@@ -34,7 +50,7 @@ const AddToCartButton = ({ product, className }: Props) => {
         <Button
           disabled={isOutOfStock}
           className={cn(
-            "w-full bg-transparent text-darkColor shadow-none border border-darkColor/30 font-semibold tracking-wide hover:text-white cursor-pointer hoverEffect",
+            "w-full bg-transparent text-white shadow-none border border-black font-semibold tracking-wide hover:text-white cursor-pointer hoverEffect",
             className
           )}
         >
