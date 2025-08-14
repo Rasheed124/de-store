@@ -8,7 +8,6 @@ import AddToCartButton from "./AddToCartButton";
 // import Title from "./Title";
 
 const ProductCard = ({ product }: { product: Product }) => {
-  console.log(product);
 
   return (
     <div className="rounded-lg overflow-hidden group text-sm">
@@ -43,7 +42,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           discount={product?.discount}
           className="text-lg"
         />
-        <AddToCartButton product={product} />
+        <AddToCartButton product={product} className="bg-black" />
       </div>
     </div>
   );

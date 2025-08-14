@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 import localFont from "next/font/local";
+import { Toaster } from "react-hot-toast";
 
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -12,7 +13,6 @@ const raleway = localFont({
   variable: "--font-raleway",
   weight: "100 900",
 });
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -31,6 +31,15 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: "#000000",
+                color: "#fff",
+              },
+            }}
+          />
         </body>
       </html>
     </ClerkProvider>

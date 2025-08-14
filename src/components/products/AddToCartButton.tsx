@@ -8,6 +8,8 @@ import QuantityButtons from "./QuantityButtons";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Product } from "../../../sanity.types";
+import useCartStore from "@/store";
+import toast from "react-hot-toast";
 
 interface Props {
   product: Product;
@@ -15,11 +17,11 @@ interface Props {
 }
 
 const AddToCartButton = ({ product, className }: Props) => {
-  // const { addItem, getItemCount } = useCartStore();
-  const [isClient, setIsClient] = useState(false);
+  const { addItem, getItemCount } = useCartStore();
 
-  const itemCount = 0;
+  const itemCount = getItemCount(product?._id);
   const isOutOfStock = product?.stock === 0;
+  const [isClient, setIsClient] = useState(false);
 
   // Use useEffect to set isClient to true after component mounts
   // This ensures that the component only renders on the client-side
@@ -48,6 +50,12 @@ const AddToCartButton = ({ product, className }: Props) => {
         </div>
       ) : (
         <Button
+          onClick={() => {
+            addItem(product);
+            toast.success(
+              `${product?.name?.substring(0, 12)}... added successfully!`
+            );
+          }}
           disabled={isOutOfStock}
           className={cn(
             "w-full bg-transparent text-white shadow-none border border-black font-semibold tracking-wide hover:text-white cursor-pointer hoverEffect",
