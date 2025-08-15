@@ -2,23 +2,21 @@ import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { Product } from "../sanity.types";
 
-interface CartIem {
+export interface CartItem {
   product: Product;
   quantity: number;
 }
 interface CartState {
-  items: CartIem[];
+  items: CartItem[];
   addItem: (product: Product) => void;
   removeItem: (productId: string) => void;
-
   deleteCartProduct: (productId: string) => void;
   resetCart: () => void;
   getTotalPrice: () => number;
+  getSubTotalPrice: () => number;
   getItemCount: (productId: string) => number;
-  getGroupedItems: () => CartIem[];
+  getGroupedItems: () => CartItem[];
 }
-
-
 
 const useCartStore = create<CartState>()(
   persist(
@@ -52,7 +50,7 @@ const useCartStore = create<CartState>()(
               acc.push(item);
             }
             return acc;
-          }, [] as CartIem[]),
+          }, [] as CartItem[]),
         })),
 
       deleteCartProduct: (productId) =>

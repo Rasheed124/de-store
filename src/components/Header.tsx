@@ -9,20 +9,25 @@ import { currentUser } from "@clerk/nextjs/server";
 import { SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ListOrdered } from "lucide-react";
+import { getAllCategories } from "@/sanity/helpers";
 
 const Header = async () => {
   const user = await currentUser();
+
+  const categories = await getAllCategories();
+
+  
 
   return (
     <header className=" border border-gray-400 py-5">
       <Container className="flex justify-between  items-center">
         {/* Header Menu Left */}
-        <HeaderMenu />
+        <HeaderMenu categories={categories} />
 
         {/* Header Logo Centered */}
         <div className="w-auto md:w-1/3 flex items-center justify-center gap-2.5">
           <MobileMenu />
-          <Logo className="">Hudah Store</Logo>
+          <Logo className="">DeStore</Logo>
         </div>
 
         {/* Header Right */}

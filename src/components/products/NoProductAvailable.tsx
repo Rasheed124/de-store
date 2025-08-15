@@ -12,7 +12,7 @@ const NoProductAvailable = ({ selectedTab, className }: Props) => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center min-h-80 w-full space-y-8 text-center bg-gray-100 mt-10 rounded-lg py-10"
+        "flex flex-col items-center justify-center min-h-80 w-full space-y-8 text-center bg-gray-100 mt-10 rounded-lg py-10", className
       )}
     >
       <motion.div

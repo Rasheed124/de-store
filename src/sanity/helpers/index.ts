@@ -34,19 +34,19 @@ export const getProductBySlug = async (slug: string) => {
 };
 
 
-// export const getAllCategories = async (quantity?: number) => {
-//   const CATEGORIES_QUERY = `*[_type=="category"] | order(name asc)${quantity ? `[0...${quantity}]` : ""}`;
+export const getAllCategories = async (quantity?: number) => {
+  const CATEGORIES_QUERY = `*[_type=="category"] | order(name asc)${quantity ? `[0...${quantity}]` : ""}`;
 
-//   try {
-//     const categories = await sanityFetch({
-//       query: CATEGORIES_QUERY,
-//     });
-//     return categories?.data || [];
-//   } catch (error) {
-//     console.error("Error fetching all categories:", error);
-//     return [];
-//   }
-// };
+  try {
+    const categories = await sanityFetch({
+      query: CATEGORIES_QUERY,
+    });
+    return categories?.data || [];
+  } catch (error) {
+    console.error("Error fetching all categories:", error);
+    return [];
+  }
+};
 
 // export const searchProductsByName = async (searchParam: string) => {
 //   const PRODUCT_SEARCH_QUERY = defineQuery(
