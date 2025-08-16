@@ -5,16 +5,23 @@ import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import SearchBar from "./SearchBar";
 import CartIcon from "./CartIcon";
-import { currentUser } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ListOrdered } from "lucide-react";
-import { getAllCategories } from "@/sanity/helpers";
+import { getAllCategories, getMyOrders } from "@/sanity/helpers";
 
 const Header = async () => {
   const user = await currentUser();
 
   const categories = await getAllCategories();
+
+  const { userId } = await auth();
+
+  let orders = null;
+  if (userId) {
+    orders = await getMyOrders(userId);
+  }
 
   return (
     <header className=" border border-gray-400 py-5">

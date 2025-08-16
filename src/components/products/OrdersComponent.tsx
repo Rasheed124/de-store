@@ -14,6 +14,8 @@ import { format } from "date-fns";
 import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { MY_ORDERS_QUERYResult } from "../../../sanity.types";
+import OrderDetailsDialog from "../OrderDetailsDialog";
 
 const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
@@ -30,6 +32,8 @@ const OrdersComponent = ({ orders }: { orders: MY_ORDERS_QUERYResult }) => {
     // This will trigger a refresh of the page data
     router.refresh();
   }, [router]);
+
+
   const handleDeleteOrder = async (
     orderId: string,
     event: React.MouseEvent
