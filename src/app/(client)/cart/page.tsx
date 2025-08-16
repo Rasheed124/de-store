@@ -24,6 +24,10 @@ import NoAccessToCart from "@/components/NoAccessToCart";
 import EmptyCart from "@/components/EmptyCart";
 import PriceFormatter from "@/components/products/PriceFormatter";
 import QuantityButtons from "@/components/products/QuantityButtons";
+import {
+  createCheckoutSession,
+  Metadata,
+} from "@/actions/createCheckoutSession";
 
 const CartPage = () => {
   const {
@@ -59,22 +63,22 @@ const CartPage = () => {
 
   const handleCheckout = async () => {
     setLoading(true);
-    // try {
-    //   const metadata: Metadata = {
-    //     orderNumber: crypto.randomUUID(),
-    //     customerName: user?.fullName ?? "Unknown",
-    //     customerEmail: user?.emailAddresses[0]?.emailAddress ?? "Unknown",
-    //     clerkUserId: user!.id,
-    //   };
-    //   const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
-    //   if (checkoutUrl) {
-    //     window.location.href = checkoutUrl;
-    //   }
-    // } catch (error) {
-    //   console.error("Error creating checkout session:", error);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      const metadata: Metadata = {
+        orderNumber: crypto.randomUUID(),
+        customerName: user?.fullName ?? "Unknown",
+        customerEmail: user?.emailAddresses[0]?.emailAddress ?? "Unknown",
+        clerkUserId: user!.id,
+      };
+      const checkoutUrl = await createCheckoutSession(groupedItems, metadata);
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      }
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleDeleteProduct = (id: string) => {

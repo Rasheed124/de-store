@@ -33,7 +33,6 @@ export const getProductBySlug = async (slug: string) => {
   }
 };
 
-
 export const getAllCategories = async (quantity?: number) => {
   const CATEGORIES_QUERY = `*[_type=="category"] | order(name asc)${quantity ? `[0...${quantity}]` : ""}`;
 
@@ -44,6 +43,29 @@ export const getAllCategories = async (quantity?: number) => {
     return categories?.data || [];
   } catch (error) {
     console.error("Error fetching all categories:", error);
+    return [];
+  }
+};
+
+export const getMyOrders = async (userId: string) => {
+  if (!userId) {
+    throw new Error("User ID is required");
+  }
+  const MY_ORDERS_QUERY =
+    defineQuery(`*[_type == 'order' && clerkUserId == $userId] | order(orderData desc){
+    ...,products[]{
+      ...,product->
+    }
+  }`);
+
+  try {
+    const orders = await sanityFetch({
+      query: MY_ORDERS_QUERY,
+      params: { userId },
+    });
+    return orders?.data || [];
+  } catch (error) {
+    console.error("Error fetching orders:", error);
     return [];
   }
 };
@@ -66,7 +88,6 @@ export const getAllCategories = async (quantity?: number) => {
 //     return [];
 //   }
 // };
-
 
 // export const getProductsByCategory = async (categorySlug: string) => {
 //   const PRODUCT_BY_CATEGORY_QUERY = defineQuery(

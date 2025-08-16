@@ -16,8 +16,6 @@ const Header = async () => {
 
   const categories = await getAllCategories();
 
-  
-
   return (
     <header className=" border border-gray-400 py-5">
       <Container className="flex justify-between  items-center">
