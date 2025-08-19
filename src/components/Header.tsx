@@ -14,14 +14,14 @@ import { getAllCategories, getMyOrders } from "@/sanity/helpers";
 const Header = async () => {
   const user = await currentUser();
 
-  const categories = await getAllCategories();
-
   const { userId } = await auth();
 
   let orders = null;
   if (userId) {
     orders = await getMyOrders(userId);
   }
+
+  const categories = await getAllCategories();
 
   return (
     <header className=" border border-gray-400 py-5">
@@ -44,7 +44,7 @@ const Header = async () => {
             <Link href={"/orders"} className="relative group cursor-pointer">
               <ListOrdered className="w-6 h-6 text-gray-700 transition-colors group-hover:text-black" />
               <span className="absolute -top-2 -right-2 bg-black text-white text-xs font-semibold px-1.5 py-0.5 rounded-full transition-transform group-hover:scale-110">
-                2
+                {orders?.length ? orders?.length : 0}
               </span>
             </Link>
             <UserButton />

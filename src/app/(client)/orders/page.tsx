@@ -17,10 +17,7 @@ const OrdersPage = async () => {
     return redirect("/");
   }
 
-
-
   const orders = await getMyOrders(userId);
-  
 
   return (
     <div>

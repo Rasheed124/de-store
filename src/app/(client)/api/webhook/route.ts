@@ -84,6 +84,8 @@ async function createOrderInSanity(
     total_details,
   } = session;
 
+  
+
   const { orderNumber, customerName, customerEmail, clerkUserId } =
     metadata as unknown as Metadata;
 

@@ -2,8 +2,7 @@
 import React, { useCallback, useState } from "react";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import PriceFormatter from "./PriceFormatter";
-// import { MY_ORDERS_QUERYResult } from "@/sanity.types";
-// import OrderDetailsDialog from "./OrderDetailsDialog";
+
 import {
   Tooltip,
   TooltipContent,
