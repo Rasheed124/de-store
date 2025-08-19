@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "motion/react";
 import { Loader2 } from "lucide-react";
-import Logo from "./Logo";
 
 const Loading = () => {
   return (

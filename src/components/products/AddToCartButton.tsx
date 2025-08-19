@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 // import toast from "react-hot-toast";
 import PriceFormatter from "./PriceFormatter";
 // import { Button } from "./ui/button";
@@ -27,12 +27,12 @@ const AddToCartButton = ({ product, className }: Props) => {
   // This ensures that the component only renders on the client-side
   // Preventing hydration errors due to server/client mismatch
 
-  // useEffect(() => {
-  //   setIsClient(true);
-  // }, []);
-  // if (!isClient) {
-  //   return null;
-  // }
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  if (!isClient) {
+    return null;
+  }
   return (
     <div className="w-full h-12 flex items-center">
       {itemCount ? (

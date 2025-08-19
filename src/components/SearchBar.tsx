@@ -1,5 +1,5 @@
 "use client";
-import { Loader2, Search, SearchIcon, X } from "lucide-react";
+import { Loader2, Search, X } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 import {
   Dialog,
