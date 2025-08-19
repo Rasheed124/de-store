@@ -35,7 +35,6 @@ const CartPage = () => {
     getTotalPrice,
     getSubTotalPrice,
     getItemCount,
-    getGroupedItems,
     resetCart,
   } = useCartStore();
   const [isClient, setIsClient] = useState(false);

@@ -1,6 +1,5 @@
 import Container from "@/components/Container";
 import CategoryProducts from "@/components/products/CategoryProducts";
-import Title from "@/components/Title";
 import { getAllCategories } from "@/sanity/helpers";
 import React from "react";
 

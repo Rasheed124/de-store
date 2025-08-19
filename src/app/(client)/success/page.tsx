@@ -6,25 +6,25 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-// import { MY_ORDERS_QUERYResult } from "@/sanity.types";
 import { client } from "@/sanity/lib/client";
 import { defineQuery } from "next-sanity";
 import { useUser } from "@clerk/nextjs";
+import { MY_ORDERS_QUERYResult } from "../../../../sanity.types";
 
 const SuccessPage = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<MY_ORDERS_QUERYResult>([]);
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("orderNumber");
   const clearCart = useCartStore((state) => state.resetCart);
   const { user } = useUser();
   const userId = user?.id;
 
-//   const query =
-//     defineQuery(`*[_type == 'order' && clerkUserId == $userId] | order(orderData desc){
-//   ...,products[]{
-//     ...,product->
-//   }
-// }`);
+  const query =
+    defineQuery(`*[_type == 'order' && clerkUserId == $userId] | order(orderData desc){
+  ...,products[]{
+    ...,product->
+  }
+}`);
 
   useEffect(() => {
     if (orderNumber) {
@@ -39,17 +39,17 @@ const SuccessPage = () => {
         return;
       }
 
-    //   try {
-    //     const ordersData = await client.fetch(query, { userId });
-    //     setOrders(ordersData);
-    //     console.log("Fetched orders:", ordersData);
-    //   } catch (error) {
-    //     console.error("Error fetching orders:", error);
-    //   }
+      try {
+        const ordersData = await client.fetch(query, { userId });
+        setOrders(ordersData);
+        console.log("Fetched orders:", ordersData);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
     };
 
     fetchData();
-  }, [userId, ]);
+  }, [userId, query]);
 
   return (
     <div className="py-10 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
@@ -97,7 +97,7 @@ const SuccessPage = () => {
         <div className="mb-8">
           <h3 className="font-semibold text-gray-900 mb-2">Recent Orders</h3>
           <div className="space-y-2">
-            {/* {orders.map((order) => (
+            {orders.map((order) => (
               <div
                 key={order?._id}
                 className="flex justify-between items-center bg-gray-50 p-2 rounded"
@@ -109,7 +109,7 @@ const SuccessPage = () => {
                   {order.status}
                 </span>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
 
