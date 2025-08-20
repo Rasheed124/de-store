@@ -5,15 +5,13 @@ import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import SearchBar from "./SearchBar";
 import CartIcon from "./CartIcon";
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { SignInButton, SignedIn, UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { ListOrdered } from "lucide-react";
 import { getAllCategories, getMyOrders } from "@/sanity/helpers";
 
 const Header = async () => {
-  const user = await currentUser();
-
   const { userId } = await auth();
 
   let orders = null;
@@ -49,14 +47,13 @@ const Header = async () => {
             </Link>
             <UserButton />
           </SignedIn>
-
-          {!user && (
+          <SignedOut>
             <SignInButton mode="modal">
               <button className="text-sm font-semibold hover:text-black hoverEffect">
                 Login
               </button>
             </SignInButton>
-          )}
+          </SignedOut>
         </div>
       </Container>
     </header>
