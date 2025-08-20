@@ -1,21 +1,25 @@
 "use client";
 
 import { AlignLeft } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import Sidebar from "./Sidebar";
+import { Category } from "../../sanity.types";
 
-const MobileMenu = () => {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+const MobileMenu = ({ categories }: { categories: Category[] }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
-      <button onClick={() => setIsSideBarOpen(!isSideBarOpen)}>
-        <AlignLeft className="lg:hidden hoverEffect hover:text-black" />
+      <button onClick={toggleSidebar}>
+        <AlignLeft className="w-6 h-6 hover:text-hoverColor hoverEffect md:hidden" />
       </button>
-
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <Sidebar
-          isOpen={isSideBarOpen}
-          onClose={() => setIsSideBarOpen(false)}
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+          categories={categories}
         />
       </div>
     </>
